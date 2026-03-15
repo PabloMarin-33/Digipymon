@@ -266,3 +266,71 @@ def usar_item(jugador, inventario):
     inventario.usar_objeto(item)
 
     print("Objeto usado correctamente.")
+
+def main():
+
+    print("===================================")
+    print("      BIENVENIDO A DIGIPYMON")
+    print("===================================")
+    print("Un mundo lleno de criaturas increíbles te espera...")
+    print()
+
+    nombre = input("Dime tu nombre, entrenador: ")
+
+    jugador1 = jugador.jugador(nombre, [], 0, 10)
+    inventario1 = inventario.inventario()
+
+    print(f"\nHola {nombre}!")
+
+    print("\nMientras caminabas por el bosque...")
+    print("un extraño Digipymon apareció frente a ti.")
+    print("Decides hacerte amigo de él y comienza tu aventura.\n")
+
+    digipymon_inicial = generar_digipymon_aleatorio()
+    jugador1.añadir_digipymon(digipymon_inicial)
+
+    print("Tu primer Digipymon es:")
+    print(digipymon_inicial)
+
+    print("\nAntes de irte de casa, un profesor te detiene.")
+    print('"Todo entrenador necesita herramientas..."')
+
+    inventario1.añadir_objeto("digipyballs", 3)
+    inventario1.añadir_objeto("pocion", 1)
+
+    print("El profesor te entrega:")
+    print("- 3 Digipyballs")
+    print("- 1 Poción")
+    print("\n¡Ya estás listo para comenzar tu aventura!")
+
+    while True:
+
+        opcion = menu()
+
+        if opcion == "1":
+            buscar_digipymon(jugador1, inventario1)
+
+        elif opcion == "2":
+            combate(jugador1)
+
+        elif opcion == "3":
+            digishop(jugador1, inventario1)
+
+        elif opcion == "4":
+            usar_item(jugador1, inventario1)
+
+        elif opcion == "5":
+            print("\n=== INVENTARIO ===")
+            print(inventario1.objetos)
+
+        elif opcion == "6":
+            print("\n=== TUS DIGIPYMON ===")
+            jugador1.consultar_digipymon()
+
+        elif opcion == "7":
+            print("\nGracias por jugar Digipymon.")
+            print("¡Hasta la próxima aventura!")
+            break
+
+        else:
+            print("Opción no válida.")
